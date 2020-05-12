@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blog</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+<body>
+    <form  action="/newpost" method="POST">
+        
+        Tytuł:  <input type="text" id="tytul"  name="title" size="150"/>
+        Treść: 
+        <textarea name="content"  id="tresc" cols="150" rows="5"></textarea>
+        <input type="submit" value="Dodaj wpis"/>
+    </form>
+
+    <div  th:each="blogPost : ${blogPosts}" >
+        <h2 th:text="${blogPost.title}"></h2>
+        <p th:text="${blogPost.content}"></p>
+        <form action="/deletepost" method="POST">
+           <input type="hidden" id="id" name="id" th:value="${blogPost.id}" /> 
+            <input type="submit"  value="Usuń" />
+        </form>
+    </div>
+    
+</body>
+</html>
